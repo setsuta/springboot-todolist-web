@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.todolist.mapper.element.AchievementMapper">
+    <select id="findAllAchievement" resultType="Achievement">
+        select * from tdachievement
+    </select>
+
+    <select id="findByAchievementId" parameterType="Integer" resultType="Achievement">
+        select * from tdachievement where cid = #{cid}
+    </select>
+
+    <insert id="create" parameterType="Achievement">
+        insert into
+        tdachievement(
+          name,
+          description,
+          image
+          )
+        values(
+          #{name},
+          #{description},
+          #{image}
+        )
+    </insert>
+
+    <insert id="delete" parameterType="Achievement">
+        delete from tdachievement where cid=#{cid}
+    </insert>
+</mapper>

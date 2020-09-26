@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.todolist.mapper.element.MallMapper">
+    <select id="findAllMall" resultType="Mall">
+        select * from tdmall
+    </select>
+
+    <select id="findByMallId" parameterType="Integer" resultType="Mall">
+        select * from tdmall where mid = #{mid}
+    </select>
+
+    <insert id="create" parameterType="Mall">
+        insert into
+        tdmall(
+          name,
+          description,
+          image,
+          price
+          )
+        values(
+          #{name},
+          #{description},
+          #{image},
+          #{price}
+        )
+    </insert>
+
+    <insert id="delete" parameterType="Mall">
+        delete from tdmall where mid=#{mid}
+    </insert>
+</mapper>

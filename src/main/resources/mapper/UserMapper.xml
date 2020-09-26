@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.todolist.mapper.UserMapper">
+    <select id="findAllUser" resultType="User">
+        select * from tduser
+    </select>
+
+
+    <insert id="create" parameterType="User">
+        insert into
+        tduser(
+          name,
+          username,
+          password
+          )
+        values(
+          #{name},
+          #{username},
+          #{password}
+        )
+    </insert>
+
+    <update id="updateCoin" parameterType="User">
+        update tduser set
+            coin = #{coin}
+        where uid = #{uid}
+    </update>
+    <update id="updatePassword" parameterType="User">
+        update tduser set
+            password = #{password}
+        where uid = #{uid}
+    </update>
+
+    <select id="findByUserId" parameterType="Integer" resultType="User">
+        select * from tduser where uid = #{uid}
+    </select>
+
+
+    <select id="login" parameterType="String" resultType="User">
+        select * from tduser where username = #{username}
+    </select>
+
+
+</mapper>

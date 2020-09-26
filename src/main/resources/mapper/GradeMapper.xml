@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.todolist.mapper.GradeMapper">
+    <select id="findByGradeId" parameterType="Integer" resultType="Grade">
+        select * from tdgrade where uid = #{uid}
+    </select>
+
+    <select id="findAllGrade" resultType="Grade">
+        select * from tdgrade
+    </select>
+
+    <insert id="create" parameterType="Grade">
+        insert into
+        tdgrade(
+          uid,
+          cid,
+          mid,
+          midstatus,
+          date
+          )
+        values(
+          #{uid},
+          #{cid},
+          #{mid},
+          #{midstatus},
+          #{date}
+        )
+    </insert>
+
+    <update id="updateMidstatus" parameterType="Grade">
+        update tdgrade set
+            midstatus = #{midstatus},
+            date = #{date}
+        where uid = #{uid}
+    </update>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.todolist.mapper.TaskHistoryMapper">
+    <select id="findByTaskHistoryId" parameterType="Integer" resultType="TaskHistory">
+        select * from tdtaskhistory where uid = #{uid}
+    </select>
+
+    <select id="findAllTaskHistory" resultType="TaskHistory">
+        select * from tdtaskhistory
+    </select>
+
+    <insert id="create" parameterType="TaskHistory">
+        insert into
+        tdtaskhistory(
+          uid,
+          tid,
+          status,
+          date
+          )
+        values(
+          #{uid},
+          #{tid},
+          #{status},
+          #{date}
+        )
+    </insert>
+
+    <update id="updateStatus" parameterType="TaskHistory">
+        update tdtaskhistory set
+            status = #{status},
+            date = #{date}
+        where uid = #{uid} and tid = #{tid}
+    </update>
+
+</mapper>

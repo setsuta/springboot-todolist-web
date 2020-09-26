@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.todolist.mapper.element.ArchiveMapper">
+    <select id="findAllArchive" resultType="Archive">
+        select * from tdarchive
+    </select>
+
+    <select id="findByArchiveId" parameterType="Integer" resultType="Archive">
+        select * from tdarchive where uid = #{uid}
+    </select>
+
+    <insert id="create" parameterType="Archive">
+        insert into
+        tdarchive(
+          uid,
+          literature,
+          math,
+          english,
+          other,
+          date
+          )
+        values(
+          #{uid},
+          #{literature},
+          #{math},
+          #{english},
+          #{other},
+          #{date}
+        )
+    </insert>
+
+    <insert id="delete" parameterType="Archive">
+        delete from tdarchive where uid=#{uid}
+    </insert>
+</mapper>

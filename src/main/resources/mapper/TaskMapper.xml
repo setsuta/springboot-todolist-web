@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.todolist.mapper.element.TaskMapper">
+    <select id="findAllTask" resultType="Task">
+        select * from tdtask
+    </select>
+
+    <select id="findByTaskId" parameterType="Integer" resultType="Task">
+        select * from tdtask where tid = #{tid}
+    </select>
+
+    <insert id="create" parameterType="Task">
+        insert into
+        tdtask(
+          name,
+          description,
+          coin
+          )
+        values(
+          #{name},
+          #{description},
+          #{coin}
+        )
+    </insert>
+
+    <insert id="delete" parameterType="Task">
+        delete from tdtask where tid=#{tid}
+    </insert>
+</mapper>
