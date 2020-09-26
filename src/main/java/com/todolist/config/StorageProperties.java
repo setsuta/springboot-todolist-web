@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("storage")
 public class StorageProperties {
 
-    private String location = "/img/upload/";
+    private String location = "/Users/linua/Desktop/todolistArchive/";
 
     public String getLocation(){
         return location;
