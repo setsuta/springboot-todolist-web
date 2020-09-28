@@ -1,11 +1,14 @@
 package com.todolist.pojo;
 
-public class TaskHistory {
+import java.io.Serializable;
+
+public class TaskHistory implements Serializable {
     private Integer uid;
     private Integer tid;
     private String status;
     private String date;
-
+    private String title;
+    private String archive;
 
     @Override
     public String toString() {
@@ -14,7 +17,25 @@ public class TaskHistory {
                 ", tid=" + tid +
                 ", status='" + status + '\'' +
                 ", date='" + date + '\'' +
+                ", title='" + title + '\'' +
+                ", archive='" + archive + '\'' +
                 '}';
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getArchive() {
+        return archive;
+    }
+
+    public void setArchive(String archive) {
+        this.archive = archive;
     }
 
     public Integer getUid() {

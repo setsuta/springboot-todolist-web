@@ -30,8 +30,10 @@
     <update id="updateStatus" parameterType="TaskHistory">
         update tdtaskhistory set
             status = #{status},
-            date = #{date}
-        where uid = #{uid} and tid = #{tid}
+            date = #{date},
+            title = #{title},
+            archive = #{archive}
+        where uid = #{uid} and tid = #{tid} and status = "0"
     </update>
 
 </mapper>

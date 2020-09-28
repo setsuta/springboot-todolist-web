@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{message}}<!--vue的插值表达式，把data中定义的数据显示到此处-->
+    <button v-on:click="fun1('Vue hello!')">on click of vuejs</button>
+
+</div>
+
+<div>
+    <input id="app2" type="text" v-on:keydown="fun2($event)">
+</div>
+
+</body>
+
+<script>
+    new Vue({
+        el:"#app2",
+        fun2:function (event) {
+            var keyCode = Event.keyCode;
+            if(keyCode < 48 || keyCode > 57){
+                event.preventDefault();
+            }
+        }
+    })
+
+    /*create vue object*/
+    new Vue({
+        el:"#app",/*vue接管id为app的区域*/
+        data:{
+            message:"hello vuejs!",/*注意：此处不要加分号*/
+            number:100
+        },
+        methods:{
+            fun1:function (msg) {
+                alert("Hello!");
+                this.message=msg;
+            }
+        }
+
+    })
+</script>
+</html>

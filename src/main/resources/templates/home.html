@@ -367,7 +367,7 @@
                         <h4>Title</h4>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-success" th:each="row,rowStat : ${taskList}">
+                        <div class="alert alert-success" th:each="row : ${taskList}">
                             <div class="alert-title"><p th:text="${row.getName()}"></p></div>
                             <p th:text="${row.getDescription()+'------ 完成后可获得金币： $ '+row.getCoin()}"></p>
                             <div class="card-footer text-right">

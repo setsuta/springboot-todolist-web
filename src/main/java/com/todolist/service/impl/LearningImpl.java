@@ -44,39 +44,19 @@ public class LearningImpl implements Learning {
 
     @Transactional
     @Override
-    public void complete(Integer uid, Integer tid,String path,String course) {
-        Archive archive = new Archive();
-        archive.setUid(uid);
-        archive.setDate(String.valueOf(timestamp));
-        courseSwitch(archive, path, course);
-        archiveMapper.create(archive);
-        Integer task = taskMapper.findByTaskId(tid).getCoin();
+    public void complete(Integer uid, Integer tid,String title,String path) {
+        Integer taskCoin = taskMapper.findByTaskId(tid).getCoin();
         User user = userMapper.findByUserId(uid);
-        user.setCoin(user.getCoin()+task);
+        user.setCoin(user.getCoin()+taskCoin);
         userMapper.updateCoin(user);
         TaskHistory taskHistory = new TaskHistory();
         taskHistory.setUid(uid);
         taskHistory.setTid(tid);
         taskHistory.setStatus("1");
+        taskHistory.setTitle(title);
+        taskHistory.setArchive(path);
         taskHistory.setDate(String.valueOf(timestamp));
         taskHistoryMapper.updateStatus(taskHistory);
     }
 
-    private Archive courseSwitch(Archive archive,String path,String course){
-        switch (course){
-            case "english":
-                archive.setEnglish(path);
-                break;
-            case "math":
-                archive.setMath(path);
-                break;
-            case "literature":
-                archive.setLiterature(path);
-                break;
-            case "other":
-                archive.setOther(path);
-                break;
-        }
-        return archive;
-    }
 }

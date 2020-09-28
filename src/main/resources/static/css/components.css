@@ -46,6 +46,7 @@
  *    1.41 Avatar
  *    1.42 Wizard
  */
+
 /* 1.1 Article */
 .article {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
@@ -1494,7 +1495,7 @@ tr:first-child > td > .fc-day-grid-event {
     display: inline-block;
     padding: 5px 15px; }
   .pricing .pricing-price {
-    margin-bottom: 45px; }
+    margin-bottom: 30px; }
     .pricing .pricing-price div:first-child {
       font-weight: 600;
       font-size: 50px; }

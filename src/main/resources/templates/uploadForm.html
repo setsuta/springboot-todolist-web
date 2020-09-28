@@ -13,6 +13,24 @@
         </table>
     </form>
 </div>
+<img  src="/upload/files/103410_83613742_p0.jpg" class="img-fluid" alt="Responsive image">
+<img  src="upload/files/103410_83613742_p0.jpg" class="img-fluid" alt="Responsive image">
+
+
+
+<h3>Formクラスを利用した実装</h3>
+<form th:action="@{/upload/bookinfo}" method="post" enctype="multipart/form-data" th:object="${completeTask}">
+    <label>タイトル</label><br>
+    <input type="text" th:field="*{title}"><br>
+    <label>値段</label><br>
+    <input type="text" th:field="*{uid}"><br>
+    <label>概要</label><br>
+    <input type="file" name="file" th:field="*{image}"><br>
+    <select class="form-control selectric" th:field="*{tid}">
+        <option th:each="row,rowStat : ${taskHistoryList}" th:value="${row.getTid()}"><span th:text="${row.getTid()}"></span></option>
+    </select>
+    <button>送信</button>
+</form>
 
 <div>
     <ul>

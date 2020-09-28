@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:padding-top="http://www.w3.org/1999/xhtml" lang="en">
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -278,120 +278,30 @@
             <p class="section-lead">Price components are very important for SaaS projects or other projects.</p>
 
             <div class="row">
-              <div class="col-12 col-md-4 col-lg-4">
-                <div class="pricing">
-                  <div class="pricing-title">
-                    Developer
-                  </div>
-                  <div class="pricing-padding">
-                    <div class="pricing-price">
-                      <div>$19</div>
-                      <div>per month</div>
-                    </div>
-                    <div class="pricing-details">
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">1 user agent</div>
-                      </div>
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">Core features</div>
-                      </div>
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">1GB storage</div>
-                      </div>
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">2 Custom domain</div>
-                      </div>
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon bg-danger text-white"><i class="fas fa-times"></i></div>
-                        <div class="pricing-item-label">Live Support</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="pricing-cta">
-                    <a href="#">Subscribe <i class="fas fa-arrow-right"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-4 col-lg-4">
+
+              <div class="col-12 col-md-4 col-lg-4" th:each="row : ${mallList}">
                 <div class="pricing pricing-highlight">
                   <div class="pricing-title">
-                    Small Team
+                    <span th:text="${row.getName()}"></span>
                   </div>
                   <div class="pricing-padding">
+
                     <div class="pricing-price">
-                      <div>$60</div>
-                      <div>per month</div>
+                      <img  th:src="@{${'/upload/files/' + row.getImage()}}" width="300" height="200">
                     </div>
+
                     <div class="pricing-details">
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">5 user agent</div>
-                      </div>
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">Core features</div>
-                      </div>
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">10GB storage</div>
-                      </div>
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">10 Custom domain</div>
-                      </div>
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">24/7 Support</div>
-                      </div>
+                      <h3><span th:text="${'$ '+row.getPrice()}"></span></h3>
+                      <p th:text="${row.getDescription()}"></p>
                     </div>
                   </div>
                   <div class="pricing-cta">
-                    <a href="#">Subscribe <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" th:onclick="|buy('${row.getMid()}')|">Buy Now <i class="fas fa-arrow-right"></i></a>
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-md-4 col-lg-4">
-                <div class="pricing">
-                  <div class="pricing-title">
-                    Enterprise
-                  </div>
-                  <div class="pricing-padding">
-                    <div class="pricing-price">
-                      <div>$499</div>
-                      <div>per month</div>
-                    </div>
-                    <div class="pricing-details">
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">Unlimited user agent</div>
-                      </div>
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">Core features</div>
-                      </div>
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">8TB storage</div>
-                      </div>
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">Unlimited custom domain</div>
-                      </div>
-                      <div class="pricing-item">
-                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
-                        <div class="pricing-item-label">Lifetime Support</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="pricing-cta">
-                    <a href="#">Subscribe <i class="fas fa-arrow-right"></i></a>
-                  </div>
-                </div>
-              </div>
+
+
             </div>
           </div>
         </section>
@@ -407,6 +317,23 @@
     </div>
   </div>
 
+  <script>
+    function buy(mid){
+      $.ajax({
+        url: "/operate/buy",
+        method: "POST",
+        data: JSON.stringify({ mid: mid}),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+          alert("Ok")
+        },
+        error: function (error) {
+          alert("Fail");
+        }
+      });
+    }
+  </script>
   <!-- General JS Scripts -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -420,6 +347,7 @@
   <!-- Template JS File -->
   <script src="/js/scripts.js"></script>
   <script src="/js/custom.js"></script>
+
 
   <!-- Page Specific JS File -->
 </body>

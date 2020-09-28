@@ -59,7 +59,6 @@ public class UserController {
 
         User userlogin = (User) request.getSession().getAttribute("userlogin");
         learning.taskAdd(userlogin.getUid(),task.getTid());
-
         return result();
     }
 
@@ -123,7 +122,6 @@ public class UserController {
     @PostMapping("/forgot")
     public Object forgotSubmit(@ModelAttribute User user, Model model) {
         model.addAttribute("forgot",user);
-        System.out.println(user.getUsername());
         if(user.getUsername() != null){
             return new RedirectView("reset");
         }else {

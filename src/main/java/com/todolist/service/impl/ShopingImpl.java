@@ -37,7 +37,7 @@ public class ShopingImpl implements Shoping {
         userMapper.updateCoin(user);
         Grade grade = new Grade();
         grade.setUid(uid);
-        grade.setUid(mid);
+        grade.setMid(mid);
         grade.setMidstatus("0");
         grade.setDate(String.valueOf(timestamp));
         gradeMapper.create(grade);

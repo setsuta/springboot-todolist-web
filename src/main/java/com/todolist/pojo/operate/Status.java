@@ -1,4 +1,4 @@
-package com.todolist.pojo;
+package com.todolist.pojo.operate;
 
 public class Status {
     private String name;

@@ -3,7 +3,7 @@ package com.todolist.test;
 import com.todolist.mapper.TaskHistoryMapper;
 import com.todolist.mapper.UserMapper;
 import com.todolist.mapper.element.TaskMapper;
-import com.todolist.pojo.Status;
+import com.todolist.pojo.operate.Status;
 import com.todolist.pojo.TaskHistory;
 import com.todolist.pojo.element.Task;
 
